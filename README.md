@@ -225,7 +225,7 @@ Llamamos al archivo que contiene la tabla. Creamos las listas resultado de la to
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura11.PNG"/></p> 
 
 
-Para iniciar creamos un bucle for en un rango de 16, luego de esto extraemos el texto del pdf, la variable i sera el numero de paginas que va a revisar una vez se haya completado el bucle, es decir, la variable i = 0, al final del bucle i++, al comenzar el la proxima lectura estaria validada en 1, asi hasta llegar hasta 15.
+Para iniciar creamos un bucle for en un rango de 42, luego de esto extraemos el texto del pdf, la variable i sera el numero de paginas que va a revisar una vez se haya completado el bucle, es decir, la variable i = 0, al final del bucle i++, al comenzar el la proxima lectura estaria validada en 1, asi hasta llegar hasta 15.
 
 Se hizo una busqueda con expresiones regulares linea por linea. Para sacar un dato especifico se duplico la linea, ejemplo( la linea de codigo 1 y 2 son exactamente iguales, de la linea 1 saque PermitNumber, en la linea 2 lo elimino y saco Address, esto me permite crear dos listas aparte.
 Este mismo proceso sucedio con las distintas lineas. 
