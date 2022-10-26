@@ -2,8 +2,9 @@
 En el siguiente informe presento la documentacion sobre el desarrollo de la prueba tecnica de recoleccion automatica, se expondra los nombres de los recursos instalados, la manera de instalacion y el desarrollo del codigo, cabe resaltar que cada linea importante de codigo esta comentada sobre lo que esta realizando, de igual manera explicare que sucede en cada parte del mismo
 <h1 align="center"> PRIMERA PRUEBA</h1>
 
+---
 # ACTIVIDAD 1
-
+---
 El desarrollo de la actividad 1 se baso en la recoleccion de datos del archivo data 1-3.pdf, el cual contenia tablas con distintos campos. Los campos a recopilar eran.
 
 -Permit type.
@@ -24,11 +25,16 @@ El desarrollo de la actividad 1 se baso en la recoleccion de datos del archivo d
 
 Para ello se utilizo un entorno virtual, librerias y expresiones regulares. Estos datos luego serian pasados a una tabla en el orden que especifica la extraccion y luego enviados a un archivo de excel.
 
+---
 # REQUERIMIENTOS
+---
 
 Lo primero que necesitamos fue la instalacion de python en windows 8, esto se simplifico descargando el programa Anaconda que con su ultima actualizacion trae python incluido, asi como el entorno de Jupyter notebook que fue el elegido  para realizar el codigo. Luego de ello procedemos a instalar los paquetes necesarios para la extraccion de datos como lo es la libreria de pandas, lector de expresiones regulares y lector de pdf.
 
+---
 # INSTALACION
+---
+
 Para descargar Anaconda fuimos a la web oficial de anaconda y buscamos el boton download. Que nos lleva al siguiente link
 
 https://repo.anaconda.com/archive/Anaconda3-2022.10-Windows-x86_64.exe
@@ -47,9 +53,13 @@ pip install pdfplumber
 
 El primer paquete habilita las expresiones regulares en python, el segundo es la bibloteca de pandas y el tercero nos permite hacer lectura del pdf y sacar el texto.
 
+---
 # Ejecucion
+---
 
+---
 # ACTIVIDAD 2
+---
 
 El desarrollo de la actividad 1 se baso en la recoleccion de datos del archivo "data 2-2.pdf", el cual contenia tablas con distintos campos. Los campos a recopilar eran.
 
@@ -77,10 +87,23 @@ El desarrollo de la actividad 1 se baso en la recoleccion de datos del archivo "
 
 Para ello se utilizo un entorno virtual, librerias y expresiones regulares. Estos datos luego serian pasados a una tabla en el orden que especifica la extraccion y luego enviados a un archivo de excel.
 
+---
 # REQUERIMIENTOS
+---
 
 Anaconda, python, Jupyter notebook
 
 re, pandas, pdfplumber
 
 Los procesos de instalacion ya fueron realizados en la priemra actividad
+
+---
+# Ejecucion
+---
+
+<h1 align="center"> SEGUNDA PRUEBA</h1>
+---
+
+# SCRAPY yellowpages
+
+# Documentacion
