@@ -246,6 +246,142 @@ Resultado final
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura55.PNG"/></p> 
 
+CODIGO
+
+---
+import pandas as pd #importamos libreria de pandas
+import re  #importamos libreria para expresiones regulares
+import pdfplumber #importamos el lector de pdf
+
+
+
+#archivo pdf
+file = "data2.pdf"
+
+
+
+#listas finales
+resultado=[]
+resultado1=[]
+resultado12=[]
+resultado13=[]
+resultado2=[]
+resultado3=[]
+resultado33=[]
+resultado4=[]
+resultado44=[]
+resultado5=[]
+resultado55=[]
+resultado56=[]
+resultado6=[]
+#iterador
+i=0
+
+
+
+
+#bucle en un rango de 43 paginas
+for i in range(43):
+    
+    #abrimos el archivo pdf
+    with pdfplumber.open(file) as pdf:
+    #extraemos el texto
+            page =pdf.pages[i]
+            text = page.extract_text()
+            
+            #realizamos la busqueda de la primera linea, posteriormente es enviada a una lista, para luego crear una tabla con ella
+            for item in re.finditer("(?P<PermitNumber>[A-Z]{2}\d{2}\-\d{4})\s([A-Z]{2}\d+\s\d{4}|[A-Z]{2}\d+\s\d{4}[A-Z])\s(\d{5}\s\w+\s\w+\s\w+)\s(.*)", text):
+                resultado.append(item.groupdict())
+                df1 = pd.DataFrame(resultado)
+                
+            #localizamos uno de los datos obtenidos en la primera linea y se convierte en tabla
+            for item in re.finditer("([A-Z]{2}\d{2}\-\d{4})\s([A-Z]{2}\d+\s\d{4}|[A-Z]{2}\d+\s\d{4}[A-Z])\s(?P<Address>\d{5}\s\w+\s\w+\s\w+)\s(.*)", text):
+                resultado1.append(item.groupdict())
+                df11 = pd.DataFrame(resultado1) 
+                
+            #localizamos uno de los datos obtenidos en la primera linea y se convierte en tabla
+            for item in re.finditer("([A-Z]{2}\d{2}\-\d{4})\s([A-Z]{2}\d+\s\d{4}|[A-Z]{2}\d+\s\d{4}[A-Z])\s(\d{5}\s\w+\s\w+\s\w+)\s(?P<IssuedDate>.*)", text):
+                resultado13.append(item.groupdict())
+                df13 = pd.DataFrame(resultado13)    
+            #localizamos uno de los datos obtenidos en la primera linea y se convierte en tabla
+            for item in re.finditer("([A-Z]{2}\d{2}\-\d{4})\s(?P<Parcel>[A-Z]{2}\d+\s\d{4}|[A-Z]{2}\d+\s\d{4}[A-Z])\s(\d{5}\s\w+\s\w+\s\w+)\s(.*)", text):
+                resultado12.append(item.groupdict())
+                df12 = pd.DataFrame(resultado12)       
+                
+            #realizamos la busqueda de la segunda linea, posteriormente es enviada a una lista, para luego crear una tabla con ella
+            for item in re.finditer("(?P<Description>(.*)) ([I]ssued)", text):
+                resultado2.append(item.groupdict()) 
+                df2 = pd.DataFrame(resultado2)
+
+            #realizamos la busqueda de la tercera linea, posteriormente es enviada a una lista, para luego crear una tabla con ella     
+            for item in re.finditer("([P]hone\n)((.*)) (?P<PhoneContractor>\(\d{3}\)\s\d{3}\-\d{4}|\s) ((.*) (\(\d{3}\)\s\d{3}\-\d{4})|(.*))", text):
+                resultado3.append(item.groupdict()) 
+
+            #localizamos uno de los datos obtenidos en la tercera linea y se convierte en tabla
+            for item in re.finditer("(?P<contractor>(.*)) (\(\d{3}\)\s\d{3}\-\d{4}) ((.*) (\(\d{3}\)\s\d{3}\-\d{4})|(.*))", text):
+                resultado33.append(item.groupdict()) 
+                df33 = pd.DataFrame(resultado33)
+            #realizamos la busqueda de la cuarta linea, posteriormente es enviada a una lista, para luego crear una tabla con ella     
+            for item in re.finditer("([P]hone\n)((.*)) (?P<PhoneOwner>\(\d{3}\)\s\d{3}\-\d{4}) ((.*) (\(\d{3}\)\s\d{3}\-\d{4})|(.*))", text):
+                resultado4.append(item.groupdict()) 
+
+            #localizamos uno de los datos obtenidos en la cuarta linea y se convierte en tabla
+            for item in re.finditer("(?P<owner>(.*)) (\(\d{3}\)\s\d{3}\-\d{4}) ((.*) (\(\d{3}\)\s\d{3}\-\d{4})|(.*))", text):
+                resultado44.append(item.groupdict()) 
+                df44 = pd.DataFrame(resultado44)
+                
+            #realizamos la busqueda de la quinta linea, posteriormente es enviada a una lista, para luego crear una tabla con ella     
+            for item in re.finditer("(\$\d+\,\d+\.\d{2}|\$\d+\,\d+\,\d+\.\d{2}) (?P<TotalFee>\$\d+\,\d+\.\d{2}|d+\.\d{2}) (\$\d+\,\d+\.\d{2}) (\$\d+\.\d+) (\d+\.\d+)", text):
+                resultado5.append(item.groupdict())
+                df5 = pd.DataFrame(resultado5)
+            #localizamos uno de los datos obtenidos en la quinta linea y se convierte en tabla
+            for item in re.finditer("(?P<valuation>\$\d+\,\d+\.\d{2}|\$\d+\,\d+\,\d+\.\d{2}|d+\.\d{2}) (\$\d+\,\d+\.\d{2}) (\$\d+\,\d+\.\d{2}) (\$\d+\.\d+) (\d+\.\d+)", text):
+                resultado55.append(item.groupdict())
+                df55 = pd.DataFrame(resultado55)   
+            #localizamos uno de los datos obtenidos en la quinta linea y se convierte en tabla
+            for item in re.finditer("(\$\d+\,\d+\.\d{2}|\$\d+\,\d+\,\d+\.\d{2}) (\$\d+\,\d+\.\d{2}) (\$\d+\,\d+\.\d{2}) (\$\d+\.\d+) (?P<SqFeet>\d+\.\d+)", text):
+                resultado56.append(item.groupdict())
+                df56 = pd.DataFrame(resultado56)  
+            #realizamos la busqueda de un dato en la primera linea, posteriormente es enviada a una lista, para luego crear una tabla con ella
+            for item in re.finditer("(?P<type>[B]uilding \-)", text):
+                resultado6.append(item.groupdict())    
+                df6 = pd.DataFrame(resultado6)
+
+
+#las busquedas de resultado3 y resultado4 obtenian datos duplicados, se eliminan los duplicados                
+
+resultado3.pop(1)
+resultado3.pop(2)
+resultado4.pop(0)
+resultado4.pop(1)  
+#se crean las tablas restantes
+df4 = pd.DataFrame(resultado4)
+df3 = pd.DataFrame(resultado3)
+i=i+1
+
+
+#se realizo la conexion de todas las tablas obtenidas
+df_1=pd.merge(df1, df6, right_index=True, left_index=True)
+df_2=pd.merge(df_1, df11, right_index=True, left_index=True)
+df_3=pd.merge(df_2, df12, right_index=True, left_index=True)
+df_4=pd.merge(df_3, df13, right_index=True, left_index=True)
+df_5=pd.merge(df_4, df5, right_index=True, left_index=True)
+df_6=pd.merge(df_5, df55, right_index=True, left_index=True)
+df_7=pd.merge(df_6, df2, right_index=True, left_index=True)
+df_8=pd.merge(df_7, df33, right_index=True, left_index=True)
+df_9=pd.merge(df_8, df3, right_index=True, left_index=True)
+df_10=pd.merge(df_9, df44, right_index=True, left_index=True)
+df_11=pd.merge(df_10, df4, right_index=True, left_index=True)
+dfinal=pd.merge(df_11, df56, right_index=True, left_index=True)
+
+
+
+#guardamos la tabla en un pdf
+
+df.to_csv('tb2.csv')
+
+---
+
 
 <h1 align="center"> SEGUNDA PRUEBA</h1>
 ---
