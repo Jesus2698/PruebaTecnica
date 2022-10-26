@@ -1,11 +1,11 @@
-# Prueba Tecnica 
-En el siguiente informe presento la documentacion sobre el desarrollo de la prueba tecnica de recoleccion automatica, se expondra los nombres de los recursos instalados, la manera de instalacion y el desarrollo del codigo, cabe resaltar que cada linea importante de codigo esta comentada sobre lo que esta realizando, de igual manera explicare que sucede en cada parte del mismo
+# Prueba Técnica 
+En el siguiente informe presento la documentación sobre el desarrollo de la prueba técnica de recolección automática, se expondrá los nombres de los recursos instalados, la manera de instalación y el desarrollo del código, cabe resaltar que cada línea importante de código esta comentada sobre lo que esta realizando, de igual manera explicare que sucede en cada parte del mismo
 <h1 align="center"> PRIMERA PRUEBA</h1>
 
 ---
 # ACTIVIDAD 1
 ---
-El desarrollo de la actividad 1 se baso en la recoleccion de datos del archivo data 1-3.pdf, el cual contenia tablas con distintos campos. Los campos a recopilar eran.
+El desarrollo de la actividad 1 se basó en la recolección de datos del archivo data 1-3.pdf, el cual contenía tablas con distintos campos. Los campos a recopilar eran.
 
 -Permit type.
 
@@ -23,27 +23,27 @@ El desarrollo de la actividad 1 se baso en la recoleccion de datos del archivo d
 
 -Value
 
-Para ello se utilizo un entorno virtual, librerias y expresiones regulares. Estos datos luego serian pasados a una tabla en el orden que especifica la extraccion y luego enviados a un archivo de excel.
+Para ello se utilizó un entorno virtual, librerías y expresiones regulares. Estos datos luego serían pasados a una tabla en el orden que especifica la extracción y luego enviados a un archivo de excel.
 
 ---
 # REQUERIMIENTOS
 ---
 
-Lo primero que necesitamos fue la instalacion de python en windows 8, esto se simplifico descargando el programa Anaconda que con su ultima actualizacion trae python incluido, asi como el entorno de Jupyter notebook que fue el elegido  para realizar el codigo. Luego de ello procedemos a instalar los paquetes necesarios para la extraccion de datos como lo es la libreria de pandas, lector de expresiones regulares y lector de pdf.
+Lo primero que necesitamos fue la instalación de python en Windows 8, esto se simplifico descargando el programa Anaconda que con su última actualización trae python incluido, asi como el entorno de Jupyter notebook que fue el elegido  para realizar el código. Luego de ello procedemos a instalar los paquetes necesarios para la extracción de datos como lo es la librería de pandas, lector de expresiones regulares y lector de pdf.
 
 ---
 # INSTALACION
 ---
 
-Para descargar Anaconda fuimos a la web oficial de anaconda y buscamos el boton download. Que nos lleva al siguiente link
+Para descargar Anaconda fuimos a la web oficial de anaconda y buscamos el botón download. Que nos lleva al siguiente link
 
 https://repo.anaconda.com/archive/Anaconda3-2022.10-Windows-x86_64.exe
 
-Una vez presionemos el link se inica la descarga. Al completar la descarga se inicia el programa de instalacion, el cual contiene una serie de pasos a seguir. Una vez completada la misma, podemos iniciar Anaconda el cual nos va a llevar a un entorno que contiene varios entornos virtuales, seleccionamos Jupyter notebook.
+Una vez presionemos el link se inicia la descarga. Al completar la descarga se inicia el programa de instalación, el cual contiene una serie de pasos a seguir. Una vez completada la misma, podemos iniciar Anaconda el cual nos va a llevar a un entorno que contiene varios entornos virtuales, seleccionamos Jupyter notebook.
 
-Una vez dentro del entorno virtual, procedemos a descargar los paquetes necesarios con el sistema de gestion de paquetes pip, este es utilizado para instalar y administrar pquetes de software escritos en python.
+Una vez dentro del entorno virtual, procedemos a descargar los paquetes necesarios con el sistema de gestión de paquetes pip, este es utilizado para instalar y administrar pquetes de software escritos en python.
 
-Instalamos los paquetes que vamos a utilizar para la primera actividad, para ello vamos a colocar el nombre del sistema de gestion de paquetes (pip) seguido de (install) seguido de e paquete que vamos a descargar, todo esto lo podemos hacer en Jupyter, una vez colocado esto, presionamos enter e iniciara la descarga e instalacion de los mismos.
+Instalamos los paquetes que vamos a utilizar para la primera actividad, para ello vamos a colocar el nombre del sistema de gestión de paquetes (pip) seguido de (install) seguido de e paquete que vamos a descargar, todo esto lo podemos hacer en Jupyter, una vez colocado esto, presionamos enter e iniciara la descarga e instalación de los mismos.
 
 pip install re
 
@@ -51,14 +51,14 @@ pip install pandas
 
 pip install pdfplumber
 
-El primer paquete habilita las expresiones regulares en python, el segundo es la bibloteca de pandas y el tercero nos permite hacer lectura del pdf y sacar el texto.
+El primer paquete habilita las expresiones regulares en python, el segundo es la biblioteca de pandas y el tercero nos permite hacer lectura del pdf y sacar el texto.
 
 ---
 
-# Ejecucion
+# Ejecución
 
 ---
-Importamos las librerias que se van a utilizar
+Importamos las librerías que se van a utilizar
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura.PNG"/></p> 
 
@@ -70,16 +70,16 @@ Creamos las listas resultado de la toma de datos de las tablas linea por linea
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura3.PNG"/></p> 
 
-Para iniciar creamos un bucle for en un rango de 16, luego de esto extraemos el texto del pdf, la variable i sera el numero de paginas que va a revisar una vez se haya completado el bucle, es decir, la variable i = 0, al final del bucle i++, al comenzar el la proxima lectura estaria validada en 1, asi hasta llegar hasta 15.
+Para iniciar creamos un bucle for en un rango de 16, luego de esto extraemos el texto del pdf, la variable i sera el número de páginas que va a revisar una vez se haya completado el bucle, es decir, la variable i = 0, al final del bucle i++, al comenzar el la próxima lectura estaría validada en 1, así hasta llegar hasta 15.
 
-Se hizo una busqueda con expresiones regulares linea por linea. Para sacar un dato especifico se duplico la linea, ejemplo( la linea de codigo 1 y 2 son exactamente iguales, de la linea 1 saque PermitNumber, en la linea 2 lo elimino y saco Address, esto me permite crear dos listas aparte.
-Este mismo proceso sucedio con las distintas lineas. 
+Se hizo una búsqueda con expresiones regulares línea por línea. Para sacar un dato especifico se duplico la línea, ejemplo( la línea de código 1 y 2 son exactamente iguales, de la linea 1 saque PermitNumber, en la linea 2 lo elimino y saco Address, esto me permite crear dos listas aparte.
+Este mismo proceso sucedió con las distintas líneas. 
 
-Tambien se elaboro un dataframe para posteriormente ser conectado al resto.
+También se elaboró un dataframe para posteriormente ser conectado al resto.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura4.PNG"/></p> 
 
-Se realizo la conexion de todos las tablas en una sola
+Se realizó la conexión de todos las tablas en una sola
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura5.PNG"/></p> 
 
@@ -176,7 +176,7 @@ data1.to_csv('tb1.csv')
 # ACTIVIDAD 2
 ---
 
-El desarrollo de la actividad 1 se baso en la recoleccion de datos del archivo "data 2-2.pdf", el cual contenia tablas con distintos campos. Los campos a recopilar eran.
+El desarrollo de la actividad 1 se basó en la recolección de datos del archivo "data 2-2.pdf", el cual contenía tablas con distintos campos. Los campos a recopilar eran.
 
 -Permit Number
 
@@ -200,7 +200,7 @@ El desarrollo de la actividad 1 se baso en la recoleccion de datos del archivo "
 
 -Sq feet
 
-Para ello se utilizo un entorno virtual, librerias y expresiones regulares. Estos datos luego serian pasados a una tabla en el orden que especifica la extraccion y luego enviados a un archivo de excel.
+Para ello se utilizó un entorno virtual, librerías y expresiones regulares. Estos datos luego serian pasados a una tabla en el orden que especifica la extracción y luego enviados a un archivo de excel.
 
 ---
 # REQUERIMIENTOS
@@ -210,31 +210,31 @@ Anaconda, python, Jupyter notebook
 
 re, pandas, pdfplumber
 
-Los procesos de instalacion ya fueron realizados en la priemra actividad
+Los procesos de instalación ya fueron realizados en la primera actividad
 
 ---
-# Ejecucion
+# Ejecución
 ---
 
-Importamos las librerias que se van a utilizar
+Importamos las librerías que se van a utilizar
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Capturas.PNG"/></p>
 
-Llamamos al archivo que contiene la tabla. Creamos las listas resultado de la toma de datos de las tablas linea por linea
+Llamamos al archivo que contiene la tabla. Creamos las listas resultado de la toma de datos de las tablas línea por línea
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura11.PNG"/></p> 
 
 
-Para iniciar creamos un bucle for en un rango de 42, luego de esto extraemos el texto del pdf, la variable i sera el numero de paginas que va a revisar una vez se haya completado el bucle, es decir, la variable i = 0, al final del bucle i++, al comenzar el la proxima lectura estaria validada en 1, asi hasta llegar hasta 15.
+Para iniciar creamos un bucle for en un rango de 42, luego de esto extraemos el texto del pdf, la variable i será el número de páginas que va a revisar una vez se haya completado el bucle, es decir, la variable i = 0, al final del bucle i++, al comenzar el la próxima lectura estaría validada en 1, asi hasta llegar hasta 15.
 
-Se hizo una busqueda con expresiones regulares linea por linea. Para sacar un dato especifico se duplico la linea, ejemplo( la linea de codigo 1 y 2 son exactamente iguales, de la linea 1 saque PermitNumber, en la linea 2 lo elimino y saco Address, esto me permite crear dos listas aparte.
-Este mismo proceso sucedio con las distintas lineas. 
+Se hizo una búsqueda con expresiones regulares línea por línea. Para sacar un dato especifico se duplico la línea, ejemplo( la línea de código 1 y 2 son exactamente iguales, de la linea 1 saque PermitNumber, en la línea 2 lo elimino y saco Address, esto me permite crear dos listas aparte.
+Este mismo proceso sucedió con las distintas líneas. 
 
-Tambien se elaboro un dataframe para posteriormente ser conectado al resto.
+También se elaboró un dataframe para posteriormente ser conectado al resto.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura22.PNG"/></p> 
 
-Las busquedas de las lineas 3 y 4 obtenian duplicados, fueron eliminadas
+Las búsquedas de las lineas 3 y 4 obtenían duplicados, fueron eliminadas
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura33.PNG"/></p> 
 
@@ -388,17 +388,17 @@ df.to_csv('tb2.csv')
 
 # SCRAPY yellowpages
 
-# Documentacion
+# Documentación
 
-Este scraping web se llevo acabo en el mismo entorno virtual Jupyter notebook, se realizo una recoleccion de datos de cada numero posible en la lista de numeros.
+Este scraping web se llevó acabo en el mismo entorno virtual Jupyter notebook, se realizó una recolección de datos de cada número posible en la lista de números.
 
 # Requerimientos
 
-Para este scrip se utilizo Anaconda, Python, upyter notebook, chromedriver y los paquetes necesarios para la extraccion de informacion.
+Para este script se utilizó Anaconda, Python, Jupyter notebook, chromedriver y los paquetes necesarios para la extracción de información.
 
 # Ejecucion
 
-Se importaron las librerias necesarias, luego de esto se llamo al archivo que contiene los numeros, para pasar a ser extraidos.
+Se importaron las librerías necesarias, luego de esto se llamó al archivo que contiene los números, para pasar a ser extraidos.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/a1.PNG"/></p> 
 
@@ -406,11 +406,11 @@ Se crearon las listas y un iterados para bucle. Con webdriver inicializamos chro
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/a2.PNG"/></p> 
 
-Inicializamos en la pagina, al momento de cargar se busca el campo de search para ingresar el primer numero telefonico, una vez el programa coloca el numero, encuentra el boton buscar.
+Inicializamos en la página, al momento de cargar se busca el campo de search para ingresar el primer número telefónico, una vez el programa coloca el número, encuentra el botón buscar.
 
-Si el programa encuentra un resultado que coincide, lo selecciona. Al abrir la pagina de este match, extrae los datos deseados.
+Si el programa encuentra un resultado que coincide, lo selecciona. Al abrir la página de este match, extrae los datos deseados.
 
-Al finalizar la extraccion, se procede a iniciar de nuevo la pagina y agrega el siguiente numero. Los resultados de estas busquedas son guardadas en una lista.
+Al finalizar la extracción, se procede a iniciar de nuevo la página y agrega el siguiente número. Los resultados de estas búsquedas son guardadas en una lista.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/a3.PNG"/></p> 
 
@@ -428,7 +428,7 @@ import pandas as pd #libreria de pandas
 import xlrd #lector de excel
 
 
-#archivo que contiene los numeros telefonicos
+#archivo que contiene los números telefónicos
 archivo = 'phones.xlsx'
 
 
@@ -437,7 +437,7 @@ wb = xlrd.open_workbook(archivo)
 
 
 
-#abrimos la primera pagina del archivo
+#abrimos la primera página del archivo
 hoja = wb.sheet_by_index(0)
 #iterador
 i=1
@@ -528,33 +528,33 @@ df.to_csv('scraping3.csv')
 
 # SCRAPY yelp
 
-# Documentacion
+# Documentación
 
-Este scraping web se llevo acabo en el mismo entorno virtual Jupyter notebook, se realizo una recoleccion de datos de cada nombre posible en la lista nombres.
+Este scraping web se llevó acabo en el mismo entorno virtual Jupyter notebook, se realizó una recolección de datos de cada nombre posible en la lista nombres.
 
 # Requerimientos
 
-Para este scrip se utilizo Anaconda, Python, upyter notebook, chromedriver y los paquetes necesarios para la extraccion de informacion.
+Para este scrip se utilizó Anaconda, Python, upyter notebook, chromedriver y los paquetes necesarios para la extracción de información.
 
-# Ejecucion
+# Ejecución
 
-Se importaron las librerias necesarias, luego de esto se llamo al archivo que contiene los nombres, para pasar a ser extraidos.
+Se importaron las librerías necesarias, luego de esto se llamó al archivo que contiene los nombres, para pasar a ser extraídos.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/b1.PNG"/></p> 
 
-Se crearon las listas y un iterados para bucle. Con webdriver inicializamos chrome
+Se crearon las listas y un iterador para bucle. Con webdriver inicializamos chrome
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/b2.PNG"/></p> 
 
-Inicializamos en la pagina, al momento de cargar se busca el campo de search para ingresar el primer nombre, una vez el programa coloca el numero, encuentra el boton buscar.
+Inicializamos en la página, al momento de cargar se busca el campo de search para ingresar el primer nombre, una vez el programa coloca el número, encuentra el botón buscar.
 
-Si el programa encuentra un resultado que coincide, lo selecciona. Al abrir la pagina de este match, extrae los datos deseados. A esto se le agrega un codigo extra ya que al momento de abrir la pagina del match se abre en una nueva pestaña, esto quiere decir que debemos pasar a esa pestaña para trabajar.
+Si el programa encuentra un resultado que coincide, lo selecciona. Al abrir la página de este match, extrae los datos deseados. A esto se le agrega un código extra ya que al momento de abrir la página del match se abre en una nueva pestaña, esto quiere decir que debemos pasar a esa pestaña para trabajar.
 
-Al finalizar la extraccion, se cierra la pestaña, se procede a iniciar de nuevo la pagina y agrega el siguiente nombre. Los resultados de estas busquedas son guardadas en una lista.
+Al finalizar la extracción, se cierra la pestaña, se procede a iniciar de nuevo la página y agrega el siguiente nombre. Los resultados de estas búsquedas son guardadas en una lista.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/b3.PNG"/></p> 
 
-Para evitar campos vacios se igualan las tablas, Luego de esto se procede a crear un dataframe y guardar los datos en excel.
+Para evitar campos vacíos se igualan las tablas, Luego de esto se procede a crear un dataframe y guardar los datos en excel.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/b4.PNG"/></p>
 
@@ -664,17 +664,17 @@ df.to_csv('scraping2.csv')
 
 # SCRAPY bbb.org
 
-# Documentacion
+# Documentación
 
-Este scraping web se llevo acabo en el mismo entorno virtual Jupyter notebook, se realizo una recoleccion de datos de cada numero posible en la lista numeros.
+Este scraping web se llevó a cabo en el mismo entorno virtual Jupyter notebook, se realizó una recolección de datos de cada número posible en la lista números.
 
 # Requerimientos
 
-Para este scrip se utilizo Anaconda, Python, upyter notebook, chromedriver y los paquetes necesarios para la extraccion de informacion.
+Para este scrip se utilizó Anaconda, Python, upyter notebook, chromedriver y los paquetes necesarios para la extracción de información.
 
-# Ejecucion
+# Ejecución
 
-Se importaron las librerias necesarias, luego de esto se llamo al archivo que contiene los numeros, para pasar a ser extraidos.
+Se importaron las librerías necesarias, luego de esto se llamó al archivo que contiene los números, para pasar a ser extraídos.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/c1.PNG"/></p> 
 
@@ -682,11 +682,11 @@ Se crearon las listas y un iterados para bucle. Con webdriver inicializamos chro
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/c2.PNG"/></p> 
 
-Inicializamos en la pagina, al momento de cargar se busca el campo de search para ingresar el primer numero, una vez el programa coloca el numero, encuentra el boton buscar.
+Inicializamos en la página, al momento de cargar se busca el campo de search para ingresar el primer número, una vez el programa coloca el número, encuentra el botón buscar.
 
-Si el programa encuentra un resultado que coincide, lo selecciona. Al abrir la pagina de este match, extrae los datos deseados. 
+Si el programa encuentra un resultado que coincide, lo selecciona. Al abrir la página de este match, extrae los datos deseados. 
 
-Al finalizar la extraccion, se cierra la pestaña, se procede a iniciar de nuevo la pagina y agrega el siguiente numero. Los resultados de estas busquedas son guardadas en una lista.
+Al finalizar la extracción, se cierra la pestaña, se procede a iniciar de nuevo la pagina y agrega el siguiente número. Los resultados de estas búsquedas son guardadas en una lista.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/c3.PNG"/></p> 
 
@@ -735,10 +735,10 @@ driver = webdriver.Chrome(driver_path)
 
 
 
-#bucle for en un rango de 1000 repeticiones para tomar los 1000 numeros
+#bucle for en un rango de 1000 repeticiones para tomar los 1000 números
 for i in range(1000):
     
-    #tomamos el archivo con los numeros y los metemos en una variable numeros, cabe resaltar que el indice va a ser i, que aumentara de 1 en 1
+    #tomamos el archivo con los números y los metemos en una variable números, cabe resaltar que el indice va a ser i, que aumentara de 1 en 1
     numeros=hoja.cell_value(i,0)
     
     #abrimos la pagina 
@@ -785,5 +785,6 @@ df.to_csv('scraping3.csv')
 
 ---
 Muchas gracias por la oportunidad de presentar esta prueba, he aprendido bastante durante el desarrollo de la misma.
-Jesus Angel Lopez Rojas
+
+Jesús Ángel López Rojas
 ---
