@@ -83,9 +83,6 @@ Se realizó la conexión de todos las tablas en una sola
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura5.PNG"/></p> 
 
-Resultado final para posteriormente guardarlo en excel
-
-<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura5.PNG"/></p> 
 
 CODIGO COMPLETO
 
@@ -242,9 +239,7 @@ se realizo la conexion de todas las tablas
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura44.PNG"/></p> 
 
-Resultado final
-
-<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/Captura55.PNG"/></p> 
+---
 
 CODIGO
 
