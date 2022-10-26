@@ -168,7 +168,7 @@ dfinal=pd.merge(df_5, df44, right_index=True, left_index=True)
 
 
 #guardamos la tabla en un pdf
-data1.to_csv('tb1.csv')
+dfinal.to_csv('tb1.csv')
 
 ---
 
@@ -378,7 +378,7 @@ dfinal=pd.merge(df_11, df56, right_index=True, left_index=True)
 
 #guardamos la tabla en un pdf
 
-df.to_csv('tb2.csv')
+dfinal.to_csv('tb2.csv')
 
 ---
 
