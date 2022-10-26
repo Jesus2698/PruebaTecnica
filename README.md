@@ -389,3 +389,401 @@ df.to_csv('tb2.csv')
 # SCRAPY yellowpages
 
 # Documentacion
+
+Este scraping web se llevo acabo en el mismo entorno virtual Jupyter notebook, se realizo una recoleccion de datos de cada numero posible en la lista de numeros.
+
+# Requerimientos
+
+Para este scrip se utilizo Anaconda, Python, upyter notebook, chromedriver y los paquetes necesarios para la extraccion de informacion.
+
+# Ejecucion
+
+Se importaron las librerias necesarias, luego de esto se llamo al archivo que contiene los numeros, para pasar a ser extraidos.
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/a1.PNG"/></p> 
+
+Se crearon las listas y un iterados para bucle. Con webdriver inicializamos chrome
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/a2.PNG"/></p> 
+
+Inicializamos en la pagina, al momento de cargar se busca el campo de search para ingresar el primer numero telefonico, una vez el programa coloca el numero, encuentra el boton buscar.
+
+Si el programa encuentra un resultado que coincide, lo selecciona. Al abrir la pagina de este match, extrae los datos deseados.
+
+Al finalizar la extraccion, se procede a iniciar de nuevo la pagina y agrega el siguiente numero. Los resultados de estas busquedas son guardadas en una lista.
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/a3.PNG"/></p> 
+
+Para evitar campos vacios se igualan las tablas, Luego de esto se procede a crear un dataframe y guardar los datos en excel.
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/a4.PNG"/></p>
+
+CODIGO
+---
+from selenium import webdriver #webdriver
+import os #libreria os
+import time #libreria para tiempo
+from selenium.webdriver.common.keys import Keys #keys para introducir data
+import pandas as pd #libreria de pandas
+import xlrd #lector de excel
+
+
+#archivo que contiene los numeros telefonicos
+archivo = 'phones.xlsx'
+
+
+#abrir el archivo para extraer datos
+wb = xlrd.open_workbook(archivo)
+
+
+
+#abrimos la primera pagina del archivo
+hoja = wb.sheet_by_index(0)
+#iterador
+i=1
+#listas
+lista_nombre=[]
+lista_telefono=[]
+lista_direccion=[]
+
+
+
+#Inicializamos webdriver para abrir chrome
+ruta = os.getcwd()
+driver_path = '{}\chromedriver.exe'.format(ruta)
+driver = webdriver.Chrome(driver_path)
+
+
+#bucle for en un rango de 1000 repeticiones para tomar los 1000 numeros
+for i in range(1000):
+    
+    #tomamos el archivo con los numeros y los metemos en una variable numeros, cabe resaltar que el indice va a ser i, que aumentara de 1 en 1
+    numeros=hoja.cell_value(i,0)
+    
+    #abrimos la pagina 
+    driver.get('https://www.yellowpages.com/')
+    
+    #nos posicionamos en la casilla de buscador e introducimos el numero de telefono i
+    numero = driver.find_element("xpath",'//div[@class="search-bar"]//div[@class="on-focus search-container"]//input[@name="search_terms"]')
+    numero.send_keys(int(numeros)) 
+    time.sleep(10)
+    
+    #presionamos el boton buscar
+    enviar = driver.find_element("xpath",'//button[@type="submit"]')
+    enviar.click()
+    
+    #si encuentra una coincidencia tomar los datos 
+    try:
+        enviar2 = driver.find_element("xpath",'//div[@class="result"][1]//div[@class="srp-listing clickable-area mdm"]//div[@class="info"]')
+        enviar2.click()   
+        time.sleep(10)
+        
+        nombres = driver.find_elements("xpath",'//article[@class="business-card non-paid-listing"]//div[@class="sales-info"]//h1[@class="dockable business-name"]')
+        nombres = [i.text for i in nombres]
+        
+        telefono = driver.find_elements("xpath",'//section[@id="details-card"]//p[@class="phone"]')
+        telefono = [i.text for i in telefono]
+        
+        direccion=[]
+        
+        
+        direccion = driver.find_elements("xpath",'//a[@class="directions small-btn"]//span[@class="address"]')
+        direccion = [i.text for i in direccion]
+        if (len(direccion)) == 1:
+            continue
+        else:
+            direccion = 0
+        
+        
+        #una vez tenga los datos, enviarlos a una lista
+        lista_nombre.extend(nombres)
+        lista_telefono.extend(telefono)
+        lista_direccion.extend(direccion)
+        
+    #si no encuentra coincidencias continuar con el bucle 
+    except:
+        pass
+    
+    
+    
+    i=i+1
+
+
+#rellenar espacios vacios si los hay
+if len(lista_nombre) != len(lista_direccion):
+    lista_direccion += (len(lista_nombre)-len(lista_direccion)) * [0]
+    
+if len(lista_nombre) != len(lista_telefono):
+    lista_telefono += (len(lista_nombre)-len(lista_telefono)) * [0]
+
+
+#crear una tabla con las listas obtenidas
+df = pd.DataFrame({"Nombre": lista_nombre, "Telefono": lista_telefono, "Direccion": lista_direccion})
+
+
+
+#guardamos la tabla en un pdf
+df.to_csv('scraping3.csv')
+
+
+# SCRAPY yelp
+
+# Documentacion
+
+Este scraping web se llevo acabo en el mismo entorno virtual Jupyter notebook, se realizo una recoleccion de datos de cada nombre posible en la lista nombres.
+
+# Requerimientos
+
+Para este scrip se utilizo Anaconda, Python, upyter notebook, chromedriver y los paquetes necesarios para la extraccion de informacion.
+
+# Ejecucion
+
+Se importaron las librerias necesarias, luego de esto se llamo al archivo que contiene los nombres, para pasar a ser extraidos.
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/b1.PNG"/></p> 
+
+Se crearon las listas y un iterados para bucle. Con webdriver inicializamos chrome
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/b2.PNG"/></p> 
+
+Inicializamos en la pagina, al momento de cargar se busca el campo de search para ingresar el primer nombre, una vez el programa coloca el numero, encuentra el boton buscar.
+
+Si el programa encuentra un resultado que coincide, lo selecciona. Al abrir la pagina de este match, extrae los datos deseados. A esto se le agrega un codigo extra ya que al momento de abrir la pagina del match se abre en una nueva pestaña, esto quiere decir que debemos pasar a esa pestaña para trabajar.
+
+Al finalizar la extraccion, se cierra la pestaña, se procede a iniciar de nuevo la pagina y agrega el siguiente nombre. Los resultados de estas busquedas son guardadas en una lista.
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/b3.PNG"/></p> 
+
+Para evitar campos vacios se igualan las tablas, Luego de esto se procede a crear un dataframe y guardar los datos en excel.
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/b4.PNG"/></p>
+
+CODIGO
+---
+from selenium import webdriver #webdriver
+import os #libreria os
+import time #libreria para tiempo
+from selenium.webdriver.common.keys import Keys #keys para introducir data
+import pandas as pd #libreria de pandas
+import xlrd #lector de excel
+
+
+#archivo que contiene los numeros telefonicos
+archivo = 'nombres.xlsx'
+
+
+
+#abrir el archivo para extraer datos
+wb = xlrd.open_workbook(archivo)
+
+
+
+#abrimos la primera pagina del archivo
+hoja = wb.sheet_by_index(0)
+#iterador
+i=0
+#listas
+lista_nombre=[]
+lista_telefono=[]
+lista_direccion=[]
+
+
+#Inicializamos webdriver para abrir chrome
+ruta = os.getcwd()
+driver_path = '{}\chromedriver.exe'.format(ruta)
+driver = webdriver.Chrome(driver_path)
+
+
+
+#bucle for en un rango de 1000 repeticiones para tomar los 1000 numeros
+for i in range(1):
+    
+    #tomamos el archivo con los numeros y los metemos en una variable numeros, cabe resaltar que el indice va a ser i, que aumentara de 1 en 1
+    numeros=hoja.cell_value(i,0)
+    
+    #abrimos la pagina 
+    driver.get('https://www.yelp.com/')
+    
+    #nos posicionamos en la casilla de buscador e introducimos el numero i
+    numero = driver.find_element("xpath",'//div[@class=" find-near-arrange-unit__09f24__hvHOu arrange-unit__09f24__rqHTg border-color--default__09f24__NPAKY"]//input[@placeholder="tacos, cheap dinner, Max’s"]')
+    numero.send_keys(numeros) 
+    time.sleep(10)
+    
+    #presionamos el boton buscar
+    enviar = driver.find_element("xpath",'//div[@class=" buttons-arrange-unit__09f24___9Q7O arrange-unit__09f24__rqHTg border-color--default__09f24__NPAKY"]//button[@type="submit"]')
+    enviar.click()
+    
+
+    
+    #Al hacer click en el boton esta redirige a otra pagina
+    enviar = driver.find_element("xpath",'//li[@class=" border-color--default__09f24__NPAKY"]//div[@class=" arrange-unit__09f24__rqHTg arrange-unit-fill__09f24__CUubG border-color--default__09f24__NPAKY"]//a[@class="css-1m051bw"]')
+    enviar.click()
+    #pasamos a trabajar con la pagina que se abrio
+    driver.switch_to.window(driver.window_handles[1])
+    
+    #creamos un try para saltar errores
+    try:   
+        
+        #buscamos los nombres y los guardamos en una variable
+        nombres = driver.find_elements("xpath",'//div[@class=" margin-b1__09f24__vaLrm border-color--default__09f24__NPAKY"]//h1[@class="css-1se8maq"]')
+        nombres = [i.text for i in nombres]
+        #buscamos los telefonos y los guardamos en una variable
+        telefono = driver.find_elements("xpath",'/html/body/yelp-react-root/div[1]/div[2]/div/div/div[2]/div/div[2]/div/aside/section[2]/div/div[2]/div/div[1]/p[2]')
+        telefono = [i.text for i in telefono]
+
+        #por lo general los telefonos son mas complicados de conseguir asi que creamos un condicional por si no encuentra datos
+        direccion=[]
+        direccion = driver.find_elements("xpath",'//*[@id="location-and-hours"]/section/div[2]/div[1]/div/div/div/div/p')
+        direccion = [i.text for i in direccion]
+        if (len(direccion)) == 1:
+            continue
+        else:
+            direccion = 0
+        
+
+        #una vez tenga los datos, enviarlos a una lista
+        lista_nombre.extend(nombres)
+        lista_telefono.extend(telefono)
+        lista_direccion.extend(direccion)
+        
+        #si no encuentra coincidencias continuar con el bucle 
+    except:
+        pass
+    #cerramos la pagina 
+    driver.close()
+    
+i=i+1
+
+
+#crear una tabla con las listas obtenidas
+df = pd.DataFrame({"Nombre": lista_nombre, "Telefono": lista_telefono, "Direccion": lista_direccion})
+
+
+#guardamos la tabla en un pdf
+df.to_csv('scraping2.csv')
+
+# SCRAPY bbb.org
+
+# Documentacion
+
+Este scraping web se llevo acabo en el mismo entorno virtual Jupyter notebook, se realizo una recoleccion de datos de cada numero posible en la lista numeros.
+
+# Requerimientos
+
+Para este scrip se utilizo Anaconda, Python, upyter notebook, chromedriver y los paquetes necesarios para la extraccion de informacion.
+
+# Ejecucion
+
+Se importaron las librerias necesarias, luego de esto se llamo al archivo que contiene los numeros, para pasar a ser extraidos.
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/c1.PNG"/></p> 
+
+Se crearon las listas y un iterados para bucle. Con webdriver inicializamos chrome
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/c2.PNG"/></p> 
+
+Inicializamos en la pagina, al momento de cargar se busca el campo de search para ingresar el primer numero, una vez el programa coloca el numero, encuentra el boton buscar.
+
+Si el programa encuentra un resultado que coincide, lo selecciona. Al abrir la pagina de este match, extrae los datos deseados. 
+
+Al finalizar la extraccion, se cierra la pestaña, se procede a iniciar de nuevo la pagina y agrega el siguiente numero. Los resultados de estas busquedas son guardadas en una lista.
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/c3.PNG"/></p> 
+
+Luego de esto se procede a crear un dataframe y guardar los datos en excel.
+
+<p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/c4.PNG"/></p>
+
+CODIGO
+
+---
+from selenium import webdriver #webdriver
+import os #libreria os
+import time #libreria para tiempo
+from selenium.webdriver.common.keys import Keys #keys para introducir data
+import pandas as pd #libreria de pandas
+import xlrd #lector de excel
+
+
+
+#archivo que contiene los numeros telefonicos
+archivo = 'phones.xlsx'
+
+
+
+
+#abrir el archivo para extraer datos
+wb = xlrd.open_workbook(archivo)
+
+
+
+#abrimos la primera pagina del archivo
+hoja = wb.sheet_by_index(0)
+#iterador
+i=0
+#listas
+lista_nombre=[]
+lista_telefono=[]
+lista_direccion=[]
+
+
+
+#Inicializamos webdriver para abrir chrome
+ruta = os.getcwd()
+driver_path = '{}\chromedriver.exe'.format(ruta)
+driver = webdriver.Chrome(driver_path)
+
+
+
+#bucle for en un rango de 1000 repeticiones para tomar los 1000 numeros
+for i in range(1000):
+    
+    #tomamos el archivo con los numeros y los metemos en una variable numeros, cabe resaltar que el indice va a ser i, que aumentara de 1 en 1
+    numeros=hoja.cell_value(i,0)
+    
+    #abrimos la pagina 
+    driver.get('https://www.bbb.org/')
+    
+    #nos posicionamos en la casilla de buscador e introducimos el numero i
+    numero = driver.find_element("xpath",'//div[@class="dtm-header-find-typeahead e164phwk0 css-9pv0b2 e19i3r7f0"]//div[@class="css-1vhtc4i e139l4qs0"]//input[@type="search"]')
+    numero.send_keys(int(numeros)) 
+    time.sleep(10)
+    
+    #presionamos el boton buscar
+    enviar = driver.find_element("xpath",'//div[@class="css-1xdgpde epsahlr0"]//button[@class="bds-button dtm-header-search-submit css-83ihwb erb0q3a0"]')
+    enviar.click()
+    
+    #si encuentra una coincidencia tomar los datos 
+    try:
+        nombres = driver.find_elements("xpath",'//div[@class="stack"]//a[@class="css-1rni3ap eou9tt70"]')
+        nombres = [i.text for i in nombres]
+    
+        telefono = driver.find_elements("xpath",'//p[@class="MuiTypography-root MuiTypography-body1 e230xlr0 css-xry8fx"]')
+        telefono = [i.text for i in telefono] 
+    
+        direccion = driver.find_elements("xpath",'//p[@class="MuiTypography-root MuiTypography-body1 text-size-5 text-gray-70 css-a4lmh5"]')
+        direccion = [i.text for i in direccion]
+        
+        #una vez tenga los datos, enviarlos a una lista
+        lista_nombre.extend(nombres)
+        lista_telefono.extend(telefono)
+        lista_direccion.extend(direccion)
+    
+    #si no encuentra coincidencias continuar con el bucle
+    except:
+        pass
+i=i+1
+
+
+
+#crear una tabla con las listas obtenidas
+df = pd.DataFrame({"Nombre": lista_nombre, "Telefono": lista_telefono, "Direccion": lista_direccion})
+
+
+#guardamos la tabla en un pdf
+df.to_csv('scraping3.csv')
+
+---
+Muchas gracias por la oportunidad de presentar esta prueba, he aprendido bastante durante el desarrollo de la misma.
+Jesus Angel Lopez Rojas
+---
