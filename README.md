@@ -488,10 +488,8 @@ for i in range(1000):
         
         direccion = driver.find_elements("xpath",'//a[@class="directions small-btn"]//span[@class="address"]')
         direccion = [i.text for i in direccion]
-        if (len(direccion)) == 1:
-            continue
-        else:
-            direccion = 0
+        if (len(direccion)) == 0:
+            direccion =["0"]
         
         
         #una vez tenga los datos, enviarlos a una lista
