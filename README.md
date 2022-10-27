@@ -417,6 +417,8 @@ Para evitar campos vacios se igualan las tablas, Luego de esto se procede a crea
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/a4.PNG"/></p>
 
+Los datos que no se encuentren o que no se capturen por tener otros valores de busquedas quedaran en "0"
+
 CODIGO
 ---
 from selenium import webdriver #webdriver
@@ -559,6 +561,8 @@ Para evitar campos vacíos se igualan las tablas, Luego de esto se procede a cre
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/b4.PNG"/></p>
 
+Los datos que no se encuentren o que no se capturen por tener otros valores de busquedas quedaran en "0"
+
 CODIGO
 ---
 from selenium import webdriver #webdriver
@@ -698,6 +702,8 @@ Al finalizar la extracción, se cierra la pestaña, se procede a iniciar de nuev
 Luego de esto se procede a crear un dataframe y guardar los datos en excel.
 
 <p align="center"><img src="https://github.com/Jesus2698/PruebaTecnica/blob/main/c4.PNG"/></p>
+
+Los datos que no se encuentren o que no se capturen por tener otros valores de busquedas quedaran en "0"
 
 CODIGO
 
