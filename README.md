@@ -1,3 +1,7 @@
+El siguiente proceso fue realizado de manerda didactica unicamente para probar y aprender sobre las librerias de python.
+
+---
+
 # Prueba Técnica 
 En el siguiente informe presento la documentación sobre el desarrollo de la prueba técnica de recolección automática, se expondrá los nombres de los recursos instalados, la manera de instalación y el desarrollo del código, cabe resaltar que cada línea importante de código esta comentada sobre lo que esta realizando, de igual manera explicare que sucede en cada parte del mismo
 <h1 align="center"> PRIMERA PRUEBA</h1>
