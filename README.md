@@ -476,20 +476,23 @@ for i in range(1000):
         enviar2 = driver.find_element("xpath",'//div[@class="result"][1]//div[@class="srp-listing clickable-area mdm"]//div[@class="info"]')
         enviar2.click()   
         time.sleep(10)
-        
+        nombres = []
         nombres = driver.find_elements("xpath",'//article[@class="business-card non-paid-listing"]//div[@class="sales-info"]//h1[@class="dockable business-name"]')
         nombres = [i.text for i in nombres]
-        
+        if (len(nombres)) == 0:
+            nombres = ["0"]
+            
+        telefono = []
         telefono = driver.find_elements("xpath",'//section[@id="details-card"]//p[@class="phone"]')
-        telefono = [i.text for i in telefono]
-        
-        direccion=[]
-        
-        
+        telefono = [i.text for i in telefono]        
+        if (len(telefono)) == 0:
+            telefono = ["0"]
+       
+        direccion = []                
         direccion = driver.find_elements("xpath",'//a[@class="directions small-btn"]//span[@class="address"]')
         direccion = [i.text for i in direccion]
         if (len(direccion)) == 0:
-            direccion =["0"]
+            direccion = ["0"]
         
         
         #una vez tenga los datos, enviarlos a una lista
@@ -622,21 +625,25 @@ for i in range(1):
     #creamos un try para saltar errores
     try:   
         
-        #buscamos los nombres y los guardamos en una variable
+        nombres=[]
         nombres = driver.find_elements("xpath",'//div[@class=" margin-b1__09f24__vaLrm border-color--default__09f24__NPAKY"]//h1[@class="css-1se8maq"]')
         nombres = [i.text for i in nombres]
+        if (len(nombres)) == 0:
+            nombres = ["0"] 
+        
         #buscamos los telefonos y los guardamos en una variable
+        telefono=[]
         telefono = driver.find_elements("xpath",'/html/body/yelp-react-root/div[1]/div[2]/div/div/div[2]/div/div[2]/div/aside/section[2]/div/div[2]/div/div[1]/p[2]')
         telefono = [i.text for i in telefono]
-
+        if (len(telefono)) == 0:
+            telefono = ["0"] 
+        
         #por lo general los telefonos son mas complicados de conseguir asi que creamos un condicional por si no encuentra datos
         direccion=[]
         direccion = driver.find_elements("xpath",'//*[@id="location-and-hours"]/section/div[2]/div[1]/div/div/div/div/p')
         direccion = [i.text for i in direccion]
-        if (len(direccion)) == 1:
-            continue
-        else:
-            direccion = 0
+        if (len(direccion)) == 0:
+            direccion = ["0"] 
         
 
         #una vez tenga los datos, enviarlos a una lista
@@ -753,14 +760,22 @@ for i in range(1000):
     
     #si encuentra una coincidencia tomar los datos 
     try:
-        nombres = driver.find_elements("xpath",'//div[@class="stack"]//a[@class="css-1rni3ap eou9tt70"]')
+        nombres=[]
+        nombres = driver.find_elements("xpath",'//*[@id="content"]/div[1]/div/header/div/div[2]/h1/span[3]')
         nombres = [i.text for i in nombres]
-    
-        telefono = driver.find_elements("xpath",'//p[@class="MuiTypography-root MuiTypography-body1 e230xlr0 css-xry8fx"]')
+        if (len(nombres)) == 0:
+            nombres = ["0"]
+        telefono=[]
+        telefono = driver.find_elements("xpath",'//*[@id="content"]/div[2]/div/div[2]/div/div[1]/div/div/div[3]/a')
         telefono = [i.text for i in telefono] 
-    
-        direccion = driver.find_elements("xpath",'//p[@class="MuiTypography-root MuiTypography-body1 text-size-5 text-gray-70 css-a4lmh5"]')
+        if (len(telefono)) == 0:
+            telefono = ["0"]
+                
+        direccion=[]      
+        direccion = driver.find_elements("xpath",'//*[@id="content"]/div[2]/div/div[2]/div/div[1]/div/div/div[1]/div/address/p[1]')
         direccion = [i.text for i in direccion]
+        if (len(direccion)) == 0:
+            direccion = ["0"]  
         
         #una vez tenga los datos, enviarlos a una lista
         lista_nombre.extend(nombres)
