@@ -530,6 +530,7 @@ df.to_csv('scraping3.csv')
 # Documentación
 
 Este scraping web se llevó acabo en el mismo entorno virtual Jupyter notebook, se realizó una recolección de datos de cada nombre posible en la lista nombres.
+Cabe resaltar que el sistema toma la primer coincidencia encontrada ya que para encontrar un nombre especifico tendria que ser muy unico.
 
 # Requerimientos
 
