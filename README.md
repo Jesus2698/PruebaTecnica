@@ -1,4 +1,4 @@
-El siguiente proceso fue realizado de manerda didactica unicamente para probar y aprender sobre las librerias de python.
+El siguiente proyecto fue realizado de manera didactica unicamente para probar y aprender sobre las librerias de python.
 
 ---
 
